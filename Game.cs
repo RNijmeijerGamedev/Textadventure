@@ -9,7 +9,7 @@ namespace ZuulCS
 
 		public Game ()
 		{
-			
+
 			parser = new Parser();
 			player = new Player();
 			createRooms();
@@ -41,7 +41,7 @@ namespace ZuulCS
 
 			office.setExit("west", lab);
 			office.setExit("up", attic);
-			
+
 			attic.setExit("down", office);
 
 			player.currentRoom = outside;  // start game outside
@@ -103,14 +103,14 @@ namespace ZuulCS
 				case "quit":
 					wantToQuit = true;
 					break;
-				case "look": 
+				case "look":
 					Console.WriteLine(player.currentRoom.getLongDescription());
 					break;
-					
+
 				case "health":
 					Console.WriteLine(player.Health);
 					break;
-					
+
 			}
 
 			return wantToQuit;
