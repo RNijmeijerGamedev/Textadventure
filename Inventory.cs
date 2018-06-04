@@ -11,7 +11,7 @@ namespace ZuulCS {
 			inventory = new List <string>();
 			inventory.Add("Knife");
 
-			foreach (inventory item in Inventory) {
+			foreach (string Item in inventory) {
 				Console.WriteLine(item);
 			}
 		}
