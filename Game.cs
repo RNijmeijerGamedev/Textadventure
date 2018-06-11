@@ -110,6 +110,9 @@ namespace ZuulCS
 				case "health":
 					Console.WriteLine(player.Health);
 					break;
+				/*case "inventory":
+					Inventory.Inventory();
+					break;*/
 
 			}
 
