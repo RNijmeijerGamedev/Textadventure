@@ -32,6 +32,7 @@ namespace ZuulCS
 			outside.setExit("south", lab);
 			outside.setExit("west", pub);
 
+
 			theatre.setExit("west", outside);
 
 			pub.setExit("east", outside);
@@ -45,6 +46,14 @@ namespace ZuulCS
 			attic.setExit("down", office);
 
 			player.currentRoom = outside;  // start game outside
+
+			// Items
+			Item vaultSuit = new Item();
+
+
+			//inventorys
+
+			lab.Inventory.addItem(vaultSuit);
 		}
 
 
@@ -110,9 +119,9 @@ namespace ZuulCS
 				case "health":
 					Console.WriteLine(player.Health);
 					break;
-				/*case "inventory":
-					Inventory.Inventory();
-					break;*/
+				case "inventory":
+					displayInv();
+					break;
 
 			}
 
@@ -159,6 +168,14 @@ namespace ZuulCS
 				player.Damage(10);
 				player.isAlive();
 				Console.WriteLine(player.currentRoom.getLongDescription());
+			}
+		}
+
+		private void displayInv() {
+			if(player.Inventory.Items.Count > 0){
+				for (int i = 0; i < player.Inventory.Items.Count; i++) {
+					Console.WriteLine(player.Inventory.Items[i].Name);
+				}
 			}
 		}
 
