@@ -49,11 +49,13 @@ namespace ZuulCS
 
 			// Items
 			VaultSuit Suit = new VaultSuit();
-
+			Stimpack Stim = new Stimpack();
 
 			//inventorys
 
 			player.Inventory.addItem(Suit);
+			//lab.Inventory.addItem(Suit);
+			player.Inventory.addItem(Stim);
 		}
 
 
