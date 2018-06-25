@@ -15,7 +15,6 @@ namespace ZuulCS {
 		public bool addItem(Item item){
 
 			items.Add(item);
-			//Console.WriteLine(item.Name);
 			return true;
 
 		}
