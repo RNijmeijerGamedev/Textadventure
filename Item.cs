@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ZuulCS {
 
-	public class Item{
+	public class Item {
         protected Int32 Damage;
         protected Int32 Heal;
         protected Int32 Weight;
@@ -15,11 +15,11 @@ namespace ZuulCS {
 		internal string Discription {get => discription;}
 
 
-        public Item(){
+        public Item() {
 			name = "item";
 			discription = "generic item";
         }
 
-		}
-
 	}
+
+}
