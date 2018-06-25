@@ -4,16 +4,20 @@ using System.Collections.Generic;
 namespace ZuulCS {
 
 	public class Inventory{
-		private Item item;
-		private List <string> inventory;
+		private List <Item> items;
 
+		internal List<Item> Items { get => items; }
 		public Inventory(){
-			inventory = new List <string>();
-			inventory.Add("Knife");
+			items = new List <Item>();
 
-			foreach (string Item in inventory) {
-				Console.WriteLine(item);
-			}
+		}
+
+		public bool addItem(Item item){
+
+			items.Add(item);
+			//Console.WriteLine(item.Name);
+			return true;
+
 		}
 
 	}
