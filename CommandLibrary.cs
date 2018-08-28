@@ -18,7 +18,9 @@ namespace ZuulCS
 				"help",
 				"look",
 				"health",
-				"inventory"
+				"inventory",
+				"take",
+				"drop"
 			};
 		}
 

@@ -6,6 +6,7 @@ namespace ZuulCS
 	{
 		private Parser parser;
 		private Player player;
+		internal Player _player {get => player; }
 
 		public Game ()
 		{
@@ -48,14 +49,14 @@ namespace ZuulCS
 			player.currentRoom = outside;  // start game outside
 
 			// Items
-			VaultSuit Suit = new VaultSuit();
-			Stimpack Stim = new Stimpack();
+			//VaultSuit Suit = new VaultSuit();
+			//Stimpack Stim = new Stimpack();
 
 			//inventorys
 
-			player.Inventory.addItem(Suit);
-			//lab.Inventory.addItem(Suit);
-			player.Inventory.addItem(Stim);
+			//player.Inventory.addItem(Suit);
+			lab.Inventory.addItem(new VaultSuit("Vaultsuit", "A generic Vault 54 jumpsuit"));
+			//player.Inventory.addItem(Stim);
 		}
 
 
@@ -110,21 +111,31 @@ namespace ZuulCS
 					break;
 				case "go":
 					goRoom(command);
+					Console.WriteLine("items: ");
+					insideInventory();
 					break;
 				case "quit":
 					wantToQuit = true;
 					break;
 				case "look":
 					Console.WriteLine(player.currentRoom.getLongDescription());
+					Console.WriteLine("items: ");
+					insideInventory();
 					break;
 
 				case "health":
 					Console.WriteLine(player.Health);
 					break;
-				case "inventory":
-					if(command.hasSecondWord()){
-						displayInvRoom(player.currentRoom);
-					} else displayInv();
+				//case "inventory":
+				//	if(command.hasSecondWord()){
+				//		displayInvRoom(player.currentRoom);
+				//	} else displayInv();
+				//	break;
+				case "take":
+					takeItem(command);
+					break;
+				case "drop":
+					dropItem(command);
 					break;
 
 			}
@@ -175,19 +186,57 @@ namespace ZuulCS
 			}
 		}
 
-		private void displayInv() {
-			if(player.Inventory.Items.Count > 0){
-				for (int i = 0; i < player.Inventory.Items.Count; i++) {
-					Console.WriteLine(player.Inventory.Items[i].Name);
-				}
+		//private void displayInv() {
+		//	if(player.Inventory.Items.Count > 0){
+		//		for (int i = 0; i < player.Inventory.Items.Count; i++) {
+		//			Console.WriteLine(player.Inventory.Items[i].Name);
+		//		}
+		//	}
+		//}
+
+		//private void displayInvRoom(Room room) {
+		//	if(room.Inventory.Items.Count > 0){
+		//		for (int i = 0; i < room.Inventory.Items.Count; i++) {
+		//			Console.WriteLine(room.Inventory.Items[i].Name);
+		//		}
+		//	}
+		//}
+		public void insideInventory()
+	   {
+		   for (int i = 0; i < player.currentRoom.Inventory.Items.Count; i++)
+		   {
+
+			   Console.WriteLine(player.currentRoom.Inventory.Items[i].Name + " - " + player.currentRoom.Inventory.Items[i].getDescription);
+
+		   }
+	   }
+
+		private void takeItem(Command command){
+			if (!command.hasSecondWord()){
+				Console.WriteLine("What should i pick up?");
+				return;
+			}
+			if (player.currentRoom.Inventory.Items == null) {
+				Console.WriteLine("There is no item" + player.currentRoom +"!");
+			}
+			else if (player.Inventory.WeightFree  > 0){
+				player.currentRoom.Inventory.takeItem(player.Inventory, command.getSecondWord());
+				Console.WriteLine();
+				Console.WriteLine("You picked something up");
 			}
 		}
-
-		private void displayInvRoom(Room room) {
-			if(room.Inventory.Items.Count > 0){
-				for (int i = 0; i < room.Inventory.Items.Count; i++) {
-					Console.WriteLine(room.Inventory.Items[i].Name);
-				}
+		private void dropItem(Command command){
+			if (!command.hasSecondWord()){
+				Console.WriteLine("What should i drop?");
+				return;
+			}
+			if (player.Inventory.Items == null) {
+				Console.WriteLine("There is no item" + player.Inventory +"!");
+			}
+			else if (player.Inventory.WeightFree  > 0){
+				player.Inventory.dropItem(player.currentRoom.Inventory, command.getSecondWord());
+				Console.WriteLine();
+				Console.WriteLine("You picked dropped something");
 			}
 		}
 

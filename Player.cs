@@ -14,7 +14,7 @@ namespace ZuulCS {
 		///	Health = 100;
 		//}
         public Player(){
-            inventory = new Inventory();
+            inventory = new Inventory(2);
         }
 
 		public double Damage(Int32 amount){

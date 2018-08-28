@@ -1,24 +1,28 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace ZuulCS {
+namespace ZuulCS
+{
+    public class Item
+    {
+        public string name;
+        public string description;
 
-	public class Item {
-        protected Int32 Damage;
-        protected Int32 Weight;
-		protected string name;
-		protected string discription;
-
-
-		internal string Name {get => name;}
-		internal string Discription {get => discription;}
-
-
-        public Item() {
-			name = "item";
-			discription = "generic item";
+        public Item(string name, string description)
+        {
+            this.name = name;
+            this.description = description;
         }
 
-	}
+        public string Name
+        {
+            get { return name; }
+        }
 
+        public string getDescription
+        {
+            get { return description; }
+        }
+    }
 }

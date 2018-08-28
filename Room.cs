@@ -16,7 +16,7 @@ namespace ZuulCS
 		internal Inventory Inventory{get => inventory;}
 		public Room(string description)
 		{
-			inventory = new Inventory();
+			inventory = new Inventory(5);
 			this.description = description;
 			exits = new Dictionary<string, Room>();
 		}
