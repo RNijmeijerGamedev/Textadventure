@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ZuulCS
 {
@@ -46,6 +47,7 @@ namespace ZuulCS
 
 			attic.setExit("down", office);
 
+			office.setLocked("Office");
 			player.currentRoom = outside;  // start game outside
 
 			// Items
@@ -55,6 +57,10 @@ namespace ZuulCS
 			//inventorys
 
 			//player.Inventory.addItem(Suit);
+
+			player.Inventory.addItem(new Key("Key", "Office Key"));
+			//pub.Inventory.addItem(new Key("Office Key", "The key to open the admin office"));
+
 			lab.Inventory.addItem(new VaultSuit("Vaultsuit", "A generic Vault 54 jumpsuit"));
 			//player.Inventory.addItem(Stim);
 		}
@@ -179,10 +185,16 @@ namespace ZuulCS
 			if (nextRoom == null) {
 				Console.WriteLine("There is no door to "+direction+"!");
 			} else {
-				player.currentRoom = nextRoom;
-				player.Damage(10);
-				player.isAlive();
-				Console.WriteLine(player.currentRoom.getLongDescription());
+
+				if (nextRoom.IsLocked) {
+					Console.WriteLine("You need a " + nextRoom.KeyToUnlock + " key");
+				} else {
+					player.currentRoom = nextRoom;
+					player.Damage(10);
+					player.isAlive();
+					Console.WriteLine(player.currentRoom.getLongDescription());
+				}
+
 			}
 		}
 

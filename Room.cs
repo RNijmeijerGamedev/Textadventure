@@ -8,17 +8,25 @@ namespace ZuulCS
 		private string description;
 		private Dictionary<string, Room> exits; // stores exits of this room.
 
+
+		private bool isLocked;
+
+		private string keyToUnlock;
 		/**
 	     * Create a room described "description". Initially, it has no exits.
 	     * "description" is something like "in a kitchen" or "in an open court
 	     * yard".
 	     */
 		internal Inventory Inventory{get => inventory;}
+		internal bool IsLocked { get => isLocked;}
+		internal string KeyToUnlock { get => keyToUnlock;}
 		public Room(string description)
 		{
 			inventory = new Inventory(5);
 			this.description = description;
 			exits = new Dictionary<string, Room>();
+			isLocked = false;
+			keyToUnlock = "";
 		}
 
 		/**
@@ -84,6 +92,20 @@ namespace ZuulCS
 				return null;
 			}
 
+		}
+
+		public void setLocked(string keyName){
+			keyToUnlock = keyName;
+			isLocked = true;
+		}
+
+		public bool unlock(string keyName) {
+			if (keyName == keyToUnlock) {
+				isLocked = false;
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
