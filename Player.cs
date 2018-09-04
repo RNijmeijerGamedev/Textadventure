@@ -5,7 +5,7 @@ namespace ZuulCS {
 	public class Player{
 
 		public Room currentRoom;
-		public Int32 Health = 50;
+		public int Health = 50;
         private Inventory inventory;
         internal Inventory Inventory {get => inventory;}
 
@@ -17,13 +17,13 @@ namespace ZuulCS {
             inventory = new Inventory(4);
         }
 
-		public double Damage(Int32 amount){
-			this.Health-=amount;
+		public int Damage(int amount){
+			Health = Health - amount;
 			return Health;
 
 		}
 
-		public double Heal(Int32 amount) {
+		public int Heal(int amount) {
 			this.Health+=amount;
 			return Health;
 		}

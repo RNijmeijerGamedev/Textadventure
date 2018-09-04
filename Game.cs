@@ -57,12 +57,13 @@ namespace ZuulCS
 			//inventorys
 
 			//player.Inventory.addItem(Suit);
-
-			player.Inventory.addItem(new Key("Key", "Office Key"));
+		//	Key key = new Key("Key", "Office Key");
+			pub.Inventory.addItem(new Key("Key", "Office Key"));
 			//pub.Inventory.addItem(new Key("Office Key", "The key to open the admin office"));
 
 			lab.Inventory.addItem(new VaultSuit("Vaultsuit", "A generic Vault 54 jumpsuit"));
 			//player.Inventory.addItem(Stim);
+			theatre.Inventory.addItem(new BadItem("curse", "an ancient artefact"));
 		}
 
 
@@ -132,17 +133,18 @@ namespace ZuulCS
 				case "health":
 					Console.WriteLine(player.Health);
 					break;
-				//case "inventory":
-				//	if(command.hasSecondWord()){
-				//		displayInvRoom(player.currentRoom);
-				//	} else displayInv();
-				//	break;
+				case "inventory":
+					displayInventory();
+					break;
 				case "take":
 					takeItem(command);
 					break;
 				case "drop":
 					dropItem(command);
 					break;
+				//case "use":
+				//	useItem(command);
+				//	break;
 
 			}
 
@@ -198,13 +200,13 @@ namespace ZuulCS
 			}
 		}
 
-		//private void displayInv() {
-		//	if(player.Inventory.Items.Count > 0){
-		//		for (int i = 0; i < player.Inventory.Items.Count; i++) {
-		//			Console.WriteLine(player.Inventory.Items[i].Name);
-		//		}
-		//	}
-		//}
+		private void displayInventory() {
+			if(player.Inventory.Items.Count > 0){
+				for (int i = 0; i < player.Inventory.Items.Count; i++) {
+					Console.WriteLine(player.Inventory.Items[i].Name);
+				}
+			}
+		}
 
 		//private void displayInvRoom(Room room) {
 		//	if(room.Inventory.Items.Count > 0){
@@ -233,6 +235,7 @@ namespace ZuulCS
 			}
 			else if (player.Inventory.WeightFree  > 0){
 				player.currentRoom.Inventory.takeItem(player.Inventory, command.getSecondWord());
+
 				Console.WriteLine();
 				Console.WriteLine("You picked something up");
 			}

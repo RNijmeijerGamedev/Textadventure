@@ -43,6 +43,7 @@ namespace ZuulCS {
                 {
                     if (other.addItem(items[i]))
                     {
+						items[i].onPickup();
                         items.Remove(items[i]);
                         return true;
                     }

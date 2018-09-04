@@ -4,7 +4,10 @@ using System.Collections.Generic;
 namespace ZuulCS{
     public class VaultSuit : Item {
 
-         public VaultSuit(string name, string description) : base(name, description){
+         public VaultSuit(string name, string description){
+             this.name = name;
+             this.description = description;
+             
         }
     }
 
